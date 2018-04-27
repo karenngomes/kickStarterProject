@@ -15,9 +15,9 @@
 | name : String |
 | email : String |
 | password : String |
-| listCreditCards : ArrayList<CreditCard> |
+| listCreditCards : ArrayList< CreditCard > |
 | profile : Profile |
-| balanceAccount : Integer |
+| balanceAccount : Double |
 
 #### CreditCard
 | Atributos |
@@ -33,7 +33,7 @@
 | id : Integer |
 | biography : String |
 | location : String |
-| listFollowers : ArrayList<User> |
+| listFollowers : ArrayList< User > |
   
 #### Reward
 | Atributos |
@@ -41,8 +41,8 @@
 | id : Integer |
 | name : String |
 | description : String |
-| listIncludes : ArrayList<String> |
-| price : Integer |
+| listIncludes : ArrayList< String > |
+| price : Double |
   
 #### Comment
 | Atributos |
@@ -60,17 +60,23 @@
 | owner : User |
 | description : String |
 | duration : Integer |
-| currentMoney : Integer |
-| goalMoney : Integer |
+| currentMoney : Double |
+| goalMoney : Double |
 | listContributors : ArrayList<User> |
 | listRewards : ArrayList<Reward> |
 | listComments : ArrayList<Comment> |
   
-#### Category
-| Atributos |
+#### Categories of Project
+| Types of Projects |
 | ------ |
-| id : Integer |
-| name : String |
+| Film |
+| Design & Tech |
+| Food & Craft |
+| Publishing |
+| Games |
+| Music |
+| Comics & Illustration |
+| Arts |
 
 #### kickStarter
 | Atributos |
