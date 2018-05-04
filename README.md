@@ -83,8 +83,8 @@ Projetos podem estar encerrados ou em andamento
 #### kickStarter
 | Atributos |
 | ------ |
-| listUsers : ArrayList<User> |
-| listProjects : ArrayList<Project> |
+| listUsers : ArrayList< User > |
+| listProjects : ArrayList< Project > |
 
 ### Funcionalidades do sistema
 
