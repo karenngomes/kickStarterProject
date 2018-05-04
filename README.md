@@ -62,11 +62,13 @@
 | duration : Integer |
 | currentMoney : Double |
 | goalMoney : Double |
-| listContributors : ArrayList<User> |
-| listRewards : ArrayList<Reward> |
-| listComments : ArrayList<Comment> |
+| listContributors : ArrayList< User > |
+| listRewards : ArrayList< Reward > |
+| listComments : ArrayList< Comment > |
+
+Projetos podem estar encerrados ou em andamento
   
-#### Categories of Project
+#### Categories
 | Types of Projects |
 | ------ |
 | Film |
@@ -83,7 +85,6 @@
 | ------ |
 | listUsers : ArrayList<User> |
 | listProjects : ArrayList<Project> |
-| listCategories : ArrayList<Category> |
 
 ### Funcionalidades do sistema
 
