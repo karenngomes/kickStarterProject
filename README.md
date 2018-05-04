@@ -11,7 +11,6 @@
 #### User
 | Atributos |
 | ------ |
-| id : Integer |
 | name : String |
 | email : String |
 | password : String |
@@ -22,15 +21,14 @@
 #### CreditCard
 | Atributos |
 | ------ |
-| id : Integer |
 | numberCard : Integer |
-| holderName : String |
+| holderName : Intger |
+| password : Integer |
 | expiredDate : Calendar |
 
 #### Profile
 | Atributos |
 | ------ |
-| id : Integer |
 | biography : String |
 | location : String |
 | listFollowers : ArrayList< User > |
@@ -38,7 +36,6 @@
 #### Reward
 | Atributos |
 | ------ |
-| id : Integer |
 | name : String |
 | description : String |
 | listIncludes : ArrayList< String > |
@@ -47,7 +44,6 @@
 #### Comment
 | Atributos |
 | ------ |
-| id : Integer |
 | description : String |
 | issueDate : Calendar |
 | sentUser : User |
@@ -55,7 +51,6 @@
 #### Project
 | Atributos |
 | ------ |
-| id : Integer |
 | category : Category |
 | owner : User |
 | description : String |
