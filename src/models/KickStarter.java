@@ -2,6 +2,8 @@ package models;
 
 import java.util.ArrayList;
 
+import models.projects.Progress;
+
 public class KickStarter {
 	private User currentUser;
 	private ArrayList<User> listUsers;
@@ -37,26 +39,32 @@ public class KickStarter {
 		this.listProjects = listProjects;
 	}
 	
-	public Integer getLastIdUser() {
-		if(listUsers.size() != 0)
-			return listUsers.get(listUsers.size()-1).getId();
-		else
-			return 1;
-	} 
-	
-	public Integer getLastIdProject() {
-		if(listProjects.size() != 0)
-			return listProjects.get(listProjects.size()-1).getId();
-		else
-			return 1;
+	public Project getProjectByName(String name) {
+		for(Project project : listProjects){
+			if(project.getName().equals(name))
+				return project;
+		}
+		
+		System.out.println("Nao foi possivel encontrar nenhum projeto com este nome");
+		return null;
 	}
-	
+
 	public void addUser(String name, String email, String password) {
 		try{
-			User user = new User(getLastIdUser()+1,name,email,password);
+			User user = new User(name,email,password);
 			this.listUsers.add(user);
+			System.out.println("Cadastro efetuado com sucesso!");
 		}catch(Exception exception){
-			System.out.println("Nao foi possivel inserir este usuario");
+			System.out.println("Nao foi possivel finalizar esta operacao");
+		}
+	}
+	
+	public void addProject(Progress project) {
+		try{
+			this.listProjects.add(project);
+			System.out.println("Projeto cadastrado com sucesso!");
+		}catch(Exception exception) {
+			System.out.println("Nao foi possivel cadastrar este projeto!");
 		}
 	}
 	
@@ -71,6 +79,32 @@ public class KickStarter {
 		}
 		
 		return null;
+	}
+	
+	public boolean checkUserByEmail(String email) {
+		for(User user : getListUsers()) {
+			if(user.getEmail().equals(email) && !user.equals(currentUser))
+				return true;
+		}
+		
+		return false;
+	}
+	
+	public User getUserByEmail(String email) {
+		for(User user : getListUsers()) {
+			if(user.getEmail().equals(email))
+				return user;
+		}
+		
+		return null;
+	}
+	
+	public boolean checkProjectName(String name) {
+		for(Project project : listProjects){
+			if(project.getName().equals(name))
+				return false;
+		}
+		return true;
 	}
 	
 	

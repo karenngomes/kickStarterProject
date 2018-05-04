@@ -1,13 +1,14 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public abstract class Project {
-	private Integer id;
 	private User owner;
 	private Category category;
 	private String name;
 	private String description;
+	private Calendar initDay;
 	private Integer durationDays;
 	private Double currentMoney;
 	private Double goalMoney;
@@ -15,9 +16,8 @@ public abstract class Project {
 	private ArrayList<Reward> listRewards;
 	private ArrayList<Comment> listComments;
 	
-	public Project(Integer id, User owner, Category category, String name, String description,
+	public Project(User owner, Category category, String name, String description,
 			Integer durationDays, Double goalMoney) {
-		this.id = id;
 		this.owner = owner;
 		this.category = category;
 		this.name = name;
@@ -28,14 +28,7 @@ public abstract class Project {
 		this.listRewards = new ArrayList<Reward>();
 		this.listContributors = new ArrayList<User>();
 		this.currentMoney = 0.0;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
+		this.initDay = Calendar.getInstance();
 	}
 
 	public User getOwner() {
@@ -68,6 +61,14 @@ public abstract class Project {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Calendar getInitDay() {
+		return initDay;
+	}
+
+	public void setInitDay(Calendar initDay) {
+		this.initDay = initDay;
 	}
 
 	public Integer getDurationDays() {

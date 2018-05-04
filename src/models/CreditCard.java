@@ -1,32 +1,20 @@
 package models;
 
-import java.util.Calendar;
-
 public class CreditCard {
-	private Integer id;
 	private Integer numberCard;
+	private Integer password;
 	private String holderName;
-	private Calendar expiredDate;
-	
-	public CreditCard() {
+	private Integer expiredMonth;
+	private Integer expiredYear;
 
-	}
 
-	public CreditCard(Integer id, Integer numberCard, String holderName,
-			Calendar expiredDate) {
-		super();
-		this.id = id;
+	public CreditCard(Integer numberCard, Integer password, String holderName,
+			Integer expiredMonth, Integer expiredYear) {
 		this.numberCard = numberCard;
+		this.password = password;
 		this.holderName = holderName;
-		this.expiredDate = expiredDate;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
+		this.expiredMonth = expiredMonth;
+		this.expiredYear = expiredYear;
 	}
 
 	public Integer getNumberCard() {
@@ -37,6 +25,14 @@ public class CreditCard {
 		this.numberCard = numberCard;
 	}
 
+	public Integer getPassword() {
+		return password;
+	}
+
+	public void setPassword(Integer password) {
+		this.password = password;
+	}
+
 	public String getHolderName() {
 		return holderName;
 	}
@@ -45,15 +41,20 @@ public class CreditCard {
 		this.holderName = holderName;
 	}
 
-	public Calendar getExpiredDate() {
-		return expiredDate;
+	public Integer getExpiredMonth() {
+		return expiredMonth;
 	}
 
-	public void setExpiredDate(Calendar expiredDate) {
-		this.expiredDate = expiredDate;
+	public void setExpiredMonth(Integer expiredMonth) {
+		this.expiredMonth = expiredMonth;
 	}
 
-	
-	
+	public Integer getExpiredYear() {
+		return expiredYear;
+	}
+
+	public void setExpiredYear(Integer expiredYear) {
+		this.expiredYear = expiredYear;
+	}
 	
 }

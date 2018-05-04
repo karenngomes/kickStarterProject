@@ -3,26 +3,15 @@ package models;
 import java.util.Calendar;
 
 public class Comment {
-	private Integer id;
 	private String description;
 	private Calendar issueDate;
 	private User sentUser;
 
-	public Comment(Integer id, String description, Calendar issueDate,
+	public Comment(String description, Calendar issueDate,
 			User sentUser) {
-		super();
-		this.id = id;
 		this.description = description;
 		this.issueDate = issueDate;
 		this.sentUser = sentUser;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getDescription() {

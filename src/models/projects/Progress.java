@@ -10,9 +10,9 @@ import models.User;
 
 public class Progress extends Project{
 
-	public Progress(Integer id, User owner, Category category, String name, String description,
+	public Progress(User owner, Category category, String name, String description,
 			Integer durationDays, Double goalMoney) {
-		super(id, owner, category, name, description, durationDays, goalMoney);
+		super(owner, category, name, description, durationDays, goalMoney);
 	}
 	
 	public void addContributor(User user, Double quantity) {
@@ -40,15 +40,33 @@ public class Progress extends Project{
 			user.getProjectIncludes().put(this, listIncludesUser);
 		}
 		
-		
+		System.out.println("Investimento realizado com sucesso!");
 	}
 	
 	public void addComment(Comment comment){
-		getListComments().add(comment);
+		try{
+			getListComments().add(comment);
+			System.out.println("Comentario adicionado com sucesso!");
+		}catch(Exception exception) {
+			System.out.println("Nao foi possivel adicionar este comentario!");
+		}
+		
 	}
 	
 	public void addReward(Reward reward){
 		getListRewards().add(reward);
+	}
+	
+	public void removeReward(String name){
+		for(Reward reward : getListRewards()){
+			if(reward.getName().equals(name)){
+				getListRewards().remove(reward);
+				System.out.println("Recompensa removida com sucesso!");
+				return;
+			}
+		}
+		
+		System.out.println("Nao foi possivel remover esta recompensa!");
 	}
 	
 	

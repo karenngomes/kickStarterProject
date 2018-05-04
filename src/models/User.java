@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class User {
-	private Integer id;
 	private String name;
 	private String email;
 	private String password;
@@ -14,21 +13,13 @@ public class User {
 	private Profile profile;
 	private Double balanceAccount;
 	
-	public User(Integer id, String name, String email, String password) {
-		this.id = id;
+	public User(String name, String email, String password) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
 		this.listCreditCards = new ArrayList<CreditCard>();
+		this.profile = new Profile();
 		this.balanceAccount = 0.0;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getName() {
@@ -100,7 +91,23 @@ public class User {
 	}
 	
 	public void addCreditCard(CreditCard creditCard) {
-		listCreditCards.add(creditCard);
+		try {
+			listCreditCards.add(creditCard);
+			System.out.println("Cartao de credito adicionado com sucesso!");
+		} catch (NullPointerException err) {
+			System.out.println("Nao foi possivel adicionar este cartao de credito");
+			throw err;
+		}
+		
+	}
+	
+	public boolean checkFollowing(String email) {
+		for(User user: getProfile().getListFollowers()){
+			if(user.getEmail().equals(email))
+				return false;
+		}
+		
+		return true;
 	}
 	
 	public void addFollower(User user) {
@@ -109,6 +116,15 @@ public class User {
 		}catch(NullPointerException err){
 			this.setProfile(new Profile());
 		}
+	}
+
+	public boolean checkNumberCard(Integer number){
+		for(CreditCard creditCard : listCreditCards) {
+			if(creditCard.getNumberCard().equals(number)){
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

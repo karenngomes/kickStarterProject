@@ -3,33 +3,18 @@ package models;
 import java.util.ArrayList;
 
 public class Reward {
-	private Integer id;
 	private String name;
 	private String description;
 	private ArrayList<String> listIncludes;
 	private ArrayList<User> listCollaborators;
 	private Double price;
-	
-	public Reward() {
-		this.listIncludes = new ArrayList<String>();
-		this.listCollaborators = new ArrayList<User>();
-	}
 
-	public Reward(Integer id, String name, String description, Double price) {
-		this.id = id;
+	public Reward(String name, String description, Double price, ArrayList<String> listIncludes) {
 		this.name = name;
 		this.description = description;
-		this.listIncludes = new ArrayList<String>();
+		this.listIncludes = listIncludes;
 		this.listCollaborators = new ArrayList<User>();
 		this.price = price;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getName() {
