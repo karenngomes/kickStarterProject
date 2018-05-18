@@ -72,12 +72,14 @@ public class KickStarter {
 		for(User user : this.listUsers) {
 			if(user.getEmail().equals(email)) {
 				if(user.getPassword().equals(password)){
+					this.currentUser = user;
 					return user;
 				}
 				break;
 			}
 		}
 		
+		this.currentUser = null;
 		return null;
 	}
 	

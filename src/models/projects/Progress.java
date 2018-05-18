@@ -18,29 +18,35 @@ public class Progress extends Project{
 	public void addContributor(User user, Double quantity) {
 		ArrayList<String> listIncludesUser = new ArrayList<String>();
 		
-		getListContributors().add(user);
 		
-		try{
-			user.getProjectInvestments().put(this, user.getProjectInvestments().get(this) + quantity);
-		}catch(Exception err) {
-			user.getProjectInvestments().put(this, quantity);
-		}
-		
-		for(Reward reward : getListRewards()) {
-			if(reward.getPrice() <= quantity) {
-				listIncludesUser.addAll(reward.getListIncludes());
-				reward.getListCollaborators().add(user);
+		if(!user.equals(this.getOwner())) {
+			getListContributors().add(user);
+			
+			try{
+				user.getProjectInvestments().put(this, user.getProjectInvestments().get(this) + quantity);
+			}catch(Exception err) {
+				user.getProjectInvestments().put(this, quantity);
 			}
+			
+			for(Reward reward : getListRewards()) {
+				if(reward.getPrice() <= quantity) {
+					listIncludesUser.addAll(reward.getListIncludes());
+					reward.getListCollaborators().add(user);
+				}
+			}
+			
+			try{
+				listIncludesUser.addAll(user.getProjectIncludes().get(this));
+				user.getProjectIncludes().put(this, listIncludesUser);
+			}catch(Exception err){
+				user.getProjectIncludes().put(this, listIncludesUser);
+			}
+			
+			System.out.println("Investimento realizado com sucesso!");
+		}else {
+			System.out.println("Nao foi possivel realizar este investimento");
 		}
 		
-		try{
-			listIncludesUser.addAll(user.getProjectIncludes().get(this));
-			user.getProjectIncludes().put(this, listIncludesUser);
-		}catch(Exception err){
-			user.getProjectIncludes().put(this, listIncludesUser);
-		}
-		
-		System.out.println("Investimento realizado com sucesso!");
 	}
 	
 	public void addComment(Comment comment){
