@@ -38,8 +38,8 @@ public class Menu {
 		System.out.println("\t ---- KickStarter");
 		System.out.println("1. Visualizar projetos");
 		System.out.println("2. Cadastrar novo projeto");
-		System.out.println("3. Alterar informações do seu projeto");
-		System.out.println("4. Alterar informações do seu perfil");
+		System.out.println("3. Alterar informacoes do seu projeto");
+		System.out.println("4. Alterar informacoes do seu perfil");
 		System.out.println("5. Seguir usuario");
 		System.out.println("6. Fechar");
 		
@@ -146,41 +146,43 @@ public class Menu {
 					option = Integer.parseInt(input.nextLine());
 				}
 				
+				InputProjectInUser putProject = new InputProjectInUser(ks.getCurrentUser(),(Progress) project);
+				
 				switch(option){
 					case 1:
-						if(project instanceof Progress){
-							investProject(ks.getCurrentUser(),(Progress) project);
-						}else{
+						if(project instanceof Progress)
+							investProject(putProject);
+						else
 							System.out.println("Nao e possivel investir neste projeto, ele ja foi encerrado!");
-						}
-						
 						break;
 					case 2:
-						if(project instanceof Progress) {
-							addComment(ks.getCurrentUser(),(Progress) project);
-						}else{
+						if(project instanceof Progress) 
+							addComment(putProject);
+						else
 							System.out.println("Nao e possivel comentar neste projeto, ele ja foi encerrado!");
-						}
+						break;
 				}
 			}
 		}
 	}
 	
-	private void investProject(User user, Progress project) {
+	private void investProject(InputProjectInUser put) {
 		input = new Scanner(System.in);
 		
-		if(user != null) {
+		User currentUser = put.getUser();
+		
+		if(currentUser != null) {
 			try{
 				System.out.println("Informe a quantia que deseja investir: ");
 				Double investMoney = Double.parseDouble(input.nextLine());
 				System.out.println("Informe o numero do cartao de credito que voce deseja utilizar: ");
 				Integer numberCard = Integer.parseInt(input.nextLine());
 				
-				if(!user.checkNumberCard(numberCard)){
+				if(!currentUser.checkNumberCard(numberCard)){
 					System.out.println("Voce nao possui este cartao previamente cadastrado, cadastre este cartao para poder investir no projeto.");
 					return;
 				}else {
-					project.addContributor(user, investMoney);
+					put.getProject().addContributor(currentUser, investMoney);
 				}
 			}catch(Exception exception) {
 				System.out.println("So pode ser digitado numeros!");
@@ -191,13 +193,13 @@ public class Menu {
 		}
 	}
 	
-	private void addComment(User user, Progress project) {
+	private void addComment(InputProjectInUser put) {
 		input = new Scanner(System.in);
 		
-		if(user != null) {
+				if(put.getUser() != null) {
 			System.out.println("Informe o comentario que deseja fazer:");
 			String description = input.nextLine();
-			project.addComment(new Comment(description, Calendar.getInstance(), user));
+			put.getProject().addComment(new Comment(description, Calendar.getInstance(), put.getUser()));
 		}else{
 			System.out.println("Voce precisa estar logado para efetuar um investimento!");
 		}
@@ -409,6 +411,7 @@ public class Menu {
 		
 	}
 	
+	@SuppressWarnings("null")
 	private Category getCategoryByNumber(){
 		input = new Scanner(System.in);
 		
@@ -429,24 +432,10 @@ public class Menu {
 			option = Integer.parseInt(input.nextLine());
 		}
 		
-		switch(option) {
-			case 1:
-				return Category.ARTS;
-			case 2:
-				return Category.COMICS_ILLUSTRATION;
-			case 3:
-				return Category.DESIGN_TECH;
-			case 4:
-				return Category.FILM;
-			case 5:
-				return Category.FOOD_CRAFT;
-			case 6:
-				return Category.GAMES;
-			case 7:
-				return Category.MUSIC;
-			default:
-				return Category.PUBLISHING;
-		}
+		Category category = null;
+		
+		return category.selectByNumber(option);
+		
 	}
 	
 }

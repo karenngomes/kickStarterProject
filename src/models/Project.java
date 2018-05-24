@@ -118,5 +118,5 @@ public abstract class Project {
 	public void setListComments(ArrayList<Comment> listComments) {
 		this.listComments = listComments;
 	}
-
+	
 }
